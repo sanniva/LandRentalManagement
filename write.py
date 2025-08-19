@@ -72,14 +72,13 @@ def generate_return_invoice(customer_name, return_date, returned_lands_invoice, 
 
 
 def update_land_availability(land_kitta, availability):
- 
-     """ Update the availability of a land."""
-     
+    """Update the availability of a land."""
+
     file_name = "landdata.txt"
     temp_file_name = "temp_land_data.txt"
 
-    # Opens the original code to read and temporary to write
-    with open("landdata.txt", 'r') as file, open("temp_land_data.txt", 'w') as temp_file:
+    # Opens the original file to read and temporary file to write
+    with open(file_name, 'r') as file, open(temp_file_name, 'w') as temp_file:
         for line in file:
             data = line.strip().split(', ')
             if data[0] == land_kitta:
@@ -89,4 +88,4 @@ def update_land_availability(land_kitta, availability):
     
     # Replace the original file with the temporary file
     import os
-    os.replace("temp_land_data.txt", "landdata.txt")
+    os.replace(temp_file_name, file_name)
